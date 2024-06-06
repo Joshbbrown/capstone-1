@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class VendingUI {
     private Scanner myScanner = new Scanner(System.in);
 
-    public String printMainMenu(){
+
+    //Main Menu
+    public String displayMainMenu() {
         System.out.println("(1) Display Vending Machine Items");
         System.out.println("(2) Purchase");
         System.out.println("(3)Exit");
@@ -13,15 +15,28 @@ public class VendingUI {
         return myScanner.nextLine();
 
     }
+    public String displayInventory() {
+        System.out.println(getClass());
+        return myScanner.nextLine();
+    }
 
-    public String displayPurchaseMenu(double currentBalance){
+
+
+
+        // Aux menu
+    public String displayPurchaseMenu() {
         System.out.println("\n (1) Feed Money");
-        System.out.println("\n (2) Make a Selection");
-        System.out.println("\n (3) Finish Transaction");
-        System.out.println("\n (4) Current Money Provided: $" + currentBalance);
+        System.out.println(" (2) Make a Selection");
+        System.out.println(" (3) Finish Transaction");
+        // System.out.println("\n (4) Current Money Provided: $" + currentBalance);
 
         return myScanner.nextLine();
 
     }
 
-}
+    public String displayCashRegister() {
+        System.out.println("work");
+        return myScanner.nextLine();
+    }
+    }
+
