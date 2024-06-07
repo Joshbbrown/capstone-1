@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
-public class Application extends VendingUI {
+public class Application {
 	private static final String VENDING_MACHINE_FILE = "vendingmachine.csv";
 	private static final String SALES_REPORT_DIRECTORY = "sales_reports/";
 
-	public Application(CashRegister cashRegister, Inventory inventory) {
-		super(cashRegister, inventory);
-	}
+//	public Application(CashRegister cashRegister, Inventory inventory) {
+//		super(cashRegister, inventory);
+//	}
 
 	public static void main(String[] args) {
 		// Start cash register and inventory

@@ -3,22 +3,22 @@ package com.techelevator;
 import java.util.Map;
 import java.util.Scanner;
 
-import java.util.Scanner;
 import java.util.TreeMap;
 
-public class VendingUI {
+public class VendingUI extends Application{
     private Scanner scanner = new Scanner(System.in);
     private CashRegister cashRegister;
     private Inventory inventory;
 
-    public VendingUI(CashRegister cashRegister, Inventory inventory) {
+    public VendingUI() {
         this.cashRegister = cashRegister;
         this.inventory = inventory;
     }
 
-    public VendingUI() {
-        
-    }
+
+//    public VendingUI() {
+//
+//    }
 
     // Main Menu
     public String displayMainMenu() {

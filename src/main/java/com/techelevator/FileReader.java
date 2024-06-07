@@ -5,10 +5,15 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class FileReader  extends Application{
-    public Inventory() {
-        itemsMap = new TreeMap<>();
+public class FileReader extends Inventory {
+    public void Inventory() {
+        TreeMap<String,Inventory>  treeMap = new TreeMap<>();
     }
+
+//    public FileReader(CashRegister cashRegister, Inventory inventory) {
+//        super(cashRegister, inventory);
+//    }
+
     public void loadItemsFromFile(String filename) {
         try (Scanner fileScanner = new Scanner(new File(filename))) {
             while (fileScanner.hasNextLine()) {
@@ -20,7 +25,7 @@ public class FileReader  extends Application{
                     double itemPrice = Double.parseDouble(parts[2]);
                     String itemType = parts[3];
                     Item item = new Item(itemName, itemPrice, itemType);
-                    itemsMap.put(slotLocation, item);
+                    getItemsMap().put(slotLocation, item);
                 } else {
                     System.out.println("Invalid line in input file: " + line);
                 }
