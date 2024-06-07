@@ -1,38 +1,49 @@
 package com.techelevator;
 
-public class CashRegister extends Application {
+public class CashRegister {
     private double balance;
-    private  int deposit;
-    private double purchase;
+    private int balanceInCents;
 
-    public CashRegister(double balance, int deposit, double purchase) {
+    public CashRegister() {
+
+    }
+
+    // Constructor and other methods...
+
+    public double returnChange() {
+        double remainingBalanceInCents = balanceInCents;
+        double quarters = remainingBalanceInCents  / .25;
+        remainingBalanceInCents %= .25;
+        double dimes = remainingBalanceInCents / .10;
+        remainingBalanceInCents %= .10;
+        double nickels = remainingBalanceInCents  / .5;
+
+        // Calculate total change amount in dollars
+        double totalChangeInDollars = ((quarters * .25) + (dimes * .10) + (nickels * .5)) / 100;
+
+        // Reset balance
+        balanceInCents = 0;
+
+        return totalChangeInDollars;
+    }
+
+    public CashRegister(double balance) {
         this.balance = balance;
-        this.deposit = deposit;
-        this.purchase = purchase;
+        this.balanceInCents = (int) (balance * 100); // Convert balance to cents
+    }
 
+    public void addMoney(double amount) {
+        balance += amount;
+        balanceInCents += amount * 100; // Convert added amount to cents and add to balanceInCents
+    }
+
+    public void subtractMoney(double amount) {
+        balance -= amount;
+        balanceInCents -= amount * 100; // Convert subtracted amount to cents and subtract from balanceInCents
     }
 
     public double getBalance() {
         return balance;
     }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public int getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(int deposit) {
-        this.deposit = deposit;
-    }
-
-    public double getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(double purchase) {
-        this.purchase = purchase;
-    }
 }
+

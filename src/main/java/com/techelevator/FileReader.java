@@ -2,20 +2,13 @@ package com.techelevator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class Inventory {
-    private TreeMap<String, Item> itemsMap;
-
-    public Item getItemBySlot(String slotLocation) {
-        return itemsMap.get(slotLocation);
-    }
+public class FileReader  extends Application{
     public Inventory() {
         itemsMap = new TreeMap<>();
     }
-
     public void loadItemsFromFile(String filename) {
         try (Scanner fileScanner = new Scanner(new File(filename))) {
             while (fileScanner.hasNextLine()) {
@@ -37,20 +30,10 @@ public class Inventory {
         }
     }
 
-    public TreeMap<String, Item> getItemsMap() {
-        return itemsMap;
-    }
 
-    public double calculateTotalSales() {
-        double totalSales = 0;
-        for (Map.Entry<String, Item> entry : itemsMap.entrySet()) {
-            Item item = entry.getValue();
-            int quantitySold = item.getInitialQuantity() - item.getItemQuantity();
-            double itemSales = quantitySold * item.getItemPrice();
-            totalSales += itemSales;
-        }
-        return totalSales;
-    }
 
+
+
+    // private static final String VENDING_MACHINE_FILE = "vendingmachine.csv";
 
 }
