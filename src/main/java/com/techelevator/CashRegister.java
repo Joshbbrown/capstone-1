@@ -6,8 +6,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CashRegister {
-    private Map<Integer, Integer> moneyStock;
 
+    private static Map<Integer, Integer> moneyStock;
+    private static int balance = 0;
+
+
+//    public void addMoney(int amount) {
+//        balance += amount;
+//    }
+
+    public static void subtractMoney(double amount) {
+        balance -= amount;
+    }
+
+    public static int returnChange() {
+        int change = balance;
+        balance = 0;
+        return change;
+    }
+
+    public static int getCurrentBalance() {
+        return balance;
+    }
     public CashRegister() {
         moneyStock = new HashMap<>();
         moneyStock.put(1, 0); // Number of $1 bills
@@ -15,7 +35,7 @@ public class CashRegister {
         moneyStock.put(10, 0); // Number of $10 bills
     }
 
-    public void addMoney(int amount) {
+    public static void addMoney(int amount) {
         if (amount == 1 || amount == 5 || amount == 10) {
             moneyStock.put(amount, moneyStock.get(amount) + 1);
         }

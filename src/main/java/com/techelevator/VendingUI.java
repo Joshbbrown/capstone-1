@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 // VendingUI.java
 public class VendingUI {
+
     public void displayMainMenu() {
         System.out.println("Main Menu:");
         System.out.println("(1) Display Vending Machine Items");
@@ -47,20 +48,45 @@ public class VendingUI {
                 cashRegister.addMoney(amountToFeed);
                 System.out.println("Money added: $" + amountToFeed);
             } else if (purchaseChoice == 2) {
-                System.out.println("Select product functionality to be implemented.");
-                // Implement select product functionality
+                System.out.print("Enter the slot location to select a product: ");
+                String slotLocation = scanner.nextLine().trim(); // Trim the input
+                Item selectedProduct = inventory.getItem(slotLocation);
+                if (selectedProduct != null) {
+                    if (selectedProduct.getQuantity() > 0 && cashRegister.getCurrentBalance() >= selectedProduct.getPrice()) {
+                        cashRegister.subtractMoney(selectedProduct.getPrice());
+                        selectedProduct.decreaseQuantity();
+                        System.out.println(selectedProduct.getName() + " dispensed.");
+                        if (selectedProduct.getType().equals("Chip")) {
+                            System.out.println("Crunch Crunch, Yum!");
+                        } else if (selectedProduct.getType().equals("Candy")) {
+                            System.out.println("Munch Munch, Yum!");
+                        } else if (selectedProduct.getType().equals("Drink")) {
+                            System.out.println("Glug Glug, Yum!");
+                        } else if (selectedProduct.getType().equals("Gum")) {
+                            System.out.println("Chew Chew, Yum!");
+                        }
+                    } else {
+                        if (selectedProduct.getQuantity() == 0) {
+                            System.out.println("Selected product is SOLD OUT.");
+                        } else {
+                            System.out.println("Insufficient funds.");
+                        }
+                    }
+                } else {
+                    System.out.println("Invalid slot location.");
+                }
             } else if (purchaseChoice == 3) {
                 purchaseInProgress = false;
                 System.out.println("Finishing transaction...");
-                // Implement transaction finishing functionality (e.g., return change)
+                int changeAmount = cashRegister.returnChange();
+                System.out.println("Change returned: $" + changeAmount);
             } else {
                 System.out.println("Invalid choice. Please try again.");
             }
-
-            // Consume newline character after each input
-            scanner.nextLine();
         }
     }
+
+
 }
 
 

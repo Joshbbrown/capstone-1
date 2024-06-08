@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Inventory {
-    private Map<String, Item> items;
+    private static Map<String, Item> items;
 
     public Inventory() {
         this.items = new TreeMap<>();
@@ -17,7 +17,7 @@ public class Inventory {
         items.put(slotLocation, item);
     }
 
-    public Item getItem(String slotLocation) {
+    public static Item getItem(String slotLocation) {
         return items.get(slotLocation);
     }
 
