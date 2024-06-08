@@ -7,50 +7,33 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Inventory {
-    private TreeMap<String, Item> itemsMap;
+    private Map<String, Item> items;
 
-    public Item getItemBySlot(String slotLocation) {
-        return itemsMap.get(slotLocation);
-    }
     public Inventory() {
-        itemsMap = new TreeMap<>();
+        this.items = new TreeMap<>();
     }
 
-    public void loadItemsFromFile(String filename) {
-        try (Scanner fileScanner = new Scanner(new File(filename))) {
-            while (fileScanner.hasNextLine()) {
-                String line = fileScanner.nextLine();
-                String[] parts = line.split("\\|");
-                if (parts.length == 4) { // Ensure valid format
-                    String slotLocation = parts[0];
-                    String itemName = parts[1];
-                    double itemPrice = Double.parseDouble(parts[2]);
-                    String itemType = parts[3];
-                    Item item = new Item(itemName, itemPrice, itemType);
-                    itemsMap.put(slotLocation, item);
-                } else {
-                    System.out.println("Invalid line in input file: " + line);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found: " + filename);
+    public void addItem(String slotLocation, Item item) {
+        items.put(slotLocation, item);
+    }
+
+    public Item getItem(String slotLocation) {
+        return items.get(slotLocation);
+    }
+
+    public boolean isItemAvailable(String slotLocation) {
+        Item item = items.get(slotLocation);
+        return item != null && item.getQuantity() > 0;
+    }
+
+    public void updateQuantity(String slotLocation, int quantity) {
+        Item item = items.get(slotLocation);
+        if (item != null) {
+            item.setQuantity(quantity);
         }
     }
 
-    public TreeMap<String, Item> getItemsMap() {
-        return itemsMap;
+    public Map<String, Item> getItems() {
+        return items;
     }
-
-    public double calculateTotalSales() {
-        double totalSales = 0;
-        for (Map.Entry<String, Item> entry : itemsMap.entrySet()) {
-            Item item = entry.getValue();
-            int quantitySold = item.getInitialQuantity() - item.getItemQuantity();
-            double itemSales = quantitySold * item.getItemPrice();
-            totalSales += itemSales;
-        }
-        return totalSales;
-    }
-
-
 }
