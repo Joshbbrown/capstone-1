@@ -21,10 +21,13 @@ public class Application {
 
 			if (choice == 1) {
 				vendingUI.displayInventory(inventory);
+
 			} else if (choice == 2) {
 				vendingUI.handlePurchase(inventory, cashRegister, scanner);
+
 			} else if (choice == 3) {
 				exit = true;
+
 			} else {
 				System.out.println("Invalid choice. Please try again.");
 			}

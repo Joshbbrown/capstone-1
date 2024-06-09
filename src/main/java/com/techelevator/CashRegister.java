@@ -11,9 +11,7 @@ public class CashRegister {
     private static int balance = 0;
 
 
-//    public void addMoney(int amount) {
-//        balance += amount;
-//    }
+
 
     public static void subtractMoney(double amount) {
         balance -= amount;

@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
-// SalesReport.java
+
 public class SalesReport {
     private static final String REPORT_FILE_PREFIX = "SalesReport_";
     private static final String REPORT_FILE_SUFFIX = ".txt";
