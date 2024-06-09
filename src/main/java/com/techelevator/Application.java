@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Application {
 	private static final String INVENTORY_FILE = "vendingmachine.csv";
-
+	// creating vendingUi, cashRegister and inventory object
 	public static void main(String[] args) {
 		VendingUI vendingUI = new VendingUI();
 		Inventory inventory = new Inventory();
@@ -13,7 +13,7 @@ public class Application {
 
 		Scanner scanner = new Scanner(System.in);
 		boolean exit = false;
-
+		
 		while (!exit) {
 			vendingUI.displayMainMenu();
 			int choice = scanner.nextInt();
